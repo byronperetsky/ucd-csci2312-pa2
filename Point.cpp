@@ -188,14 +188,33 @@ namespace Clustering {
     // prevent (p1 * 2) = p2;
     const Point Point::operator*(double aValue) const{
 
+        Point aPoint(*this); //Makes a new point with the dim of the current point
 
+        aPoint *= aValue; // * the current point by the value
 
+        return aPoint; // returns the point
 
     }
-//const Point operator/(double) const; // p3 = p2 / 2;
-//
-//double &operator[](int index);
-//
+
+    // p3 = p2 / 2;
+    const Point Point::operator/(double aValue) const{
+
+        Point aPoint(*this);
+
+        aPoint /= aValue;
+
+        return aPoint;
+    }
+
+    double &Point::operator[](int index){
+
+        while(index < 0 || index >= __dim)// <---Bounds checking
+            index = 0;
+
+        return __values[index];
+
+    }
+
 //// Friends
 //friend Point &operator+=(Point &, const Point &);
 //friend Point &operator-=(Point &, const Point &);

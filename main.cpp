@@ -31,7 +31,7 @@ int main() {
 
     // point tests
     test_point_smoketest(ec);
-//    test_point_id(ec, NumIters);
+    test_point_id(ec, NumIters);
 //    test_point_getsetelem(ec, NumIters);
 //    test_point_copying(ec, NumIters);
 //    test_point_assignment(ec, NumIters);
