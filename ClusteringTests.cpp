@@ -120,115 +120,115 @@ void test_point_id(ErrorContext &ec, unsigned int numRuns) {
     }
 }
 
-//// setValue, getValue, operator[]
-//void test_point_getsetelem(ErrorContext &ec, unsigned int numRuns) {
-//    bool pass;
-//
-//    // Run at least once!!
-//    assert(numRuns > 0);
-//
-//    ec.DESC("--- Test - Point - Get/set element ---");
-//
-//    for (int run = 0; run < numRuns; run ++)
-//    {
-//        ec.DESC("values default to zero");
-//
-//        {
-//            Point p(50);
-//
-//            // Check zeros
-//            pass = true;
-//            for (int i = 0; i < 50; i ++) {
-//                pass = pass &&
-//                        (p.getValue(i) == 0.0) &&
-//                        (p[i] == 0.0);
-//            }
-//            ec.result(pass);
-//        }
-//
-//        ec.DESC("setValue, getValue (0-indexed)");
-//
-//        {
-//            Point p(20);
-//
-//            // Set values
-//            for (int i = 0; i < 20; i ++)
-//                p.setValue(i, 13.43 * i * i + 4.567 * i + 1.234567);
-//
-//            // Check values
-//            pass = true;
-//            for (int i = 0; i < 20; i ++)
-//                pass = pass &&
-//                        (p.getValue(i) == (13.43 * i * i + 4.567 * i + 1.234567)) &&
-//                        (p[i] == (13.43 * i * i + 4.567 * i + 1.234567));
-//            ec.result(pass);
-//        }
-//
-//        ec.DESC("operator[] (0-indexed)");
-//
-//        {
-//            Point p(5);
-//
-//            // Set values
-//            for (int i = 0; i < 5; i ++)
-//                p[i] = 1000000.43 * i * i + 400000.567 * i + 10000.234567;
-//
-//            // Check values
-//            pass = true;
-//            for (int i = 0; i < 5; i ++)
-//                pass = pass &&
-//                       (p.getValue(i) == (1000000.43 * i * i + 400000.567 * i + 10000.234567)) &&
-//                       (p[i] == (1000000.43 * i * i + 400000.567 * i + 10000.234567));
-//            ec.result(pass);
-//        }
-//    }
-//}
-//
-//// Copy constructor
-//void test_point_copying(ErrorContext &ec, unsigned int numRuns) {
-//    bool pass;
-//
-//    // Run at least once!!
-//    assert(numRuns > 0);
-//
-//    ec.DESC("--- Test - Point - Copy ---");
-//
-//    for (int run = 0; run < numRuns; run ++) {
-//
-//        ec.DESC("simple copy");
-//
-//        {
-//            Point p1(50);
-//
-//            for (int i = 0; i < 50; i ++)
-//                p1[i] = 44.56 * i * i + 23.45 * i + 12.34;
-//
-//            Point p2(p1);
-//
-//            pass = true;
-//            for (int i = 0; i < 50; i ++)
-//                pass = pass && (p1[i] == p2[i]);
-//            ec.result(pass);
-//        }
-//
-//        ec.DESC("pass and return by value");
-//
-//        {
-//            Point p1(50);
-//
-//            for (int i = 0; i < 50; i ++)
-//                p1[i] = 44.56 * i * i + 23.45 * i + 12.34;
-//
-//            Point p2 = point_in_and_out(p1);
-//
-//            pass = true;
-//            for (int i = 0; i < 50; i ++)
-//                pass = pass && (p1[i] == p2[i]);
-//            ec.result(pass);
-//        }
-//    }
-//}
-//
+// setValue, getValue, operator[]
+void test_point_getsetelem(ErrorContext &ec, unsigned int numRuns) {
+    bool pass;
+
+    // Run at least once!!
+    assert(numRuns > 0);
+
+    ec.DESC("--- Test - Point - Get/set element ---");
+
+    for (int run = 0; run < numRuns; run ++)
+    {
+        ec.DESC("values default to zero");
+
+        {
+            Point p(50);
+
+            // Check zeros
+            pass = true;
+            for (int i = 0; i < 50; i ++) {
+                pass = pass &&
+                        (p.getValue(i) == 0.0) &&
+                        (p[i] == 0.0);
+            }
+            ec.result(pass);
+        }
+
+        ec.DESC("setValue, getValue (0-indexed)");
+
+        {
+            Point p(20);
+
+            // Set values
+            for (int i = 0; i < 20; i ++)
+                p.setValue(i, 13.43 * i * i + 4.567 * i + 1.234567);
+
+            // Check values
+            pass = true;
+            for (int i = 0; i < 20; i ++)
+                pass = pass &&
+                        (p.getValue(i) == (13.43 * i * i + 4.567 * i + 1.234567)) &&
+                        (p[i] == (13.43 * i * i + 4.567 * i + 1.234567));
+            ec.result(pass);
+        }
+
+        ec.DESC("operator[] (0-indexed)");
+
+        {
+            Point p(5);
+
+            // Set values
+            for (int i = 0; i < 5; i ++)
+                p[i] = 1000000.43 * i * i + 400000.567 * i + 10000.234567;
+
+            // Check values
+            pass = true;
+            for (int i = 0; i < 5; i ++)
+                pass = pass &&
+                       (p.getValue(i) == (1000000.43 * i * i + 400000.567 * i + 10000.234567)) &&
+                       (p[i] == (1000000.43 * i * i + 400000.567 * i + 10000.234567));
+            ec.result(pass);
+        }
+    }
+}
+
+// Copy constructor
+void test_point_copying(ErrorContext &ec, unsigned int numRuns) {
+    bool pass;
+
+    // Run at least once!!
+    assert(numRuns > 0);
+
+    ec.DESC("--- Test - Point - Copy ---");
+
+    for (int run = 0; run < numRuns; run ++) {
+
+        ec.DESC("simple copy");
+
+        {
+            Point p1(50);
+
+            for (int i = 0; i < 50; i ++)
+                p1[i] = 44.56 * i * i + 23.45 * i + 12.34;
+
+            Point p2(p1);
+
+            pass = true;
+            for (int i = 0; i < 50; i ++)
+                pass = pass && (p1[i] == p2[i]);
+            ec.result(pass);
+        }
+
+        ec.DESC("pass and return by value");
+
+        {
+            Point p1(50);
+
+            for (int i = 0; i < 50; i ++)
+                p1[i] = 44.56 * i * i + 23.45 * i + 12.34;
+
+            Point p2 = point_in_and_out(p1);
+
+            pass = true;
+            for (int i = 0; i < 50; i ++)
+                pass = pass && (p1[i] == p2[i]);
+            ec.result(pass);
+        }
+    }
+}
+
 //// operator=
 //void test_point_assignment(ErrorContext &ec, unsigned int numRuns) {
 //    bool pass;

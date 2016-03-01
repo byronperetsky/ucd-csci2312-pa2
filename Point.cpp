@@ -216,12 +216,122 @@ namespace Clustering {
     }
 
 //// Friends
-//friend Point &operator+=(Point &, const Point &);
-//friend Point &operator-=(Point &, const Point &);
-//friend const Point operator+(const Point &, const Point &);
-//friend const Point operator-(const Point &, const Point &);
-//
-//friend bool operator==(const Point &, const Point &);
+    Point &operator+=(Point & lhsPoint, const Point & rhsPoint){
+
+        int lhsDims = 0, //Holds the total dimensions of lhs Point.
+            rhsDims = 0, //Holds the total dimensions of rhs Point.
+            biggestDims = 0; //Holds the larger of the 2 dimensions between rhs and lhs Points.
+
+        lhsDims = lhsPoint.getDims();
+        rhsDims = rhsPoint.getDims();
+
+        if (rhsDims > lhsDims)
+            biggestDims = rhsDims;
+        else
+            biggestDims = lhsDims;
+
+        if (lhsDims < rhsDims)
+        {
+            delete [] lhsPoint.__values;
+
+            lhsPoint.__values = new double[rhsDims];
+        }
+
+        for (int index = 0; index < biggestDims ; ++index) {
+
+            lhsPoint[index]= lhsPoint[index] + rhsPoint.getValue(index);
+
+        }
+
+        return lhsPoint;
+
+    }
+
+    Point &operator-=(Point & lhsPoint, const Point & rhsPoint){
+
+        int lhsDims = 0, //Holds the total dimensions of lhs Point.
+            rhsDims = 0, //Holds the total dimensions of rhs Point.
+            biggestDims = 0; //Holds the larger of the 2 dimensions between rhs and lhs Points.
+
+        lhsDims = lhsPoint.getDims();
+        rhsDims = rhsPoint.getDims();
+
+        if (rhsDims > lhsDims)
+            biggestDims = rhsDims;
+        else
+            biggestDims = lhsDims;
+
+        if (lhsDims < rhsDims)
+        {
+            delete [] lhsPoint.__values;
+
+            lhsPoint.__values = new double[rhsDims];
+        }
+
+        for (int index = 0; index < biggestDims ; ++index) {
+
+            lhsPoint[index]= lhsPoint[index] - rhsPoint.getValue(index);
+
+        }
+
+        return lhsPoint;
+
+    }
+
+    const Point operator+(const Point & lhsPoint, const Point & rhsPoint){
+
+        Point aPoint(lhsPoint);
+
+        aPoint += rhsPoint;
+
+        return aPoint;
+
+    }
+
+    const Point operator-(const Point & lhsPoint, const Point & rhsPoint){
+
+        Point aPoint(lhsPoint);
+
+        aPoint -= rhsPoint;
+
+        return aPoint;
+
+    }
+
+    bool operator==(const Point & lhsPoint, const Point & rhsPoint){
+
+        bool notEqual = false;
+        bool equal = true;
+
+        int lhsDims = 0, //Holds the total dimensions of lhs Point.
+            rhsDims = 0, //Holds the total dimensions of rhs Point.
+            biggestDims = 0; //Holds the larger of the 2 dimensions between rhs and lhs Points.
+
+        lhsDims = lhsPoint.getDims();
+        rhsDims = rhsPoint.getDims();
+
+        if (rhsDims > lhsDims)
+            biggestDims = rhsDims;
+        else
+            biggestDims = lhsDims;
+
+
+        if (lhsPoint.__id == rhsPoint.__id)
+        {
+            for (int index = 0; index < biggestDims ; ++index) {
+
+                if (lhsPoint.__values[index] != rhsPoint.__values[index]){
+                    return notEqual;
+                }
+            }
+        }
+        else
+        {
+            return notEqual;
+        }
+
+        return equal;
+    }
 //friend bool operator!=(const Point &, const Point &);
 //
 //friend bool operator<(const Point &, const Point &);
