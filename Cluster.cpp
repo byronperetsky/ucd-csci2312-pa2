@@ -153,7 +153,11 @@ namespace Clustering {
 
 
     }
-//        const Point &remove(const Point &);
+        const Point &remove(const Point & aPoint){
+
+            return true;
+
+        }
 //        bool contains(const Point &);
 //
 //        // Overloaded operators

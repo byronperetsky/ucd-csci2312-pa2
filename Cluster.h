@@ -38,7 +38,7 @@ namespace Clustering {
 //
 //        // Set functions: They allow calling c1.add(c2.remove(p));
         void add(const Point &); // TODO add asc order to the requirements
-//        const Point &remove(const Point &);
+        const Point &remove(const Point &);
 //        bool contains(const Point &);
 //
 //        // Overloaded operators
