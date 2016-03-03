@@ -51,24 +51,24 @@ namespace Clustering {
         Cluster &operator-=(const Point &);
 //
 //        // Members: Compound assignment (Cluster argument)
-//        Cluster &operator+=(const Cluster &); // union
-//        Cluster &operator-=(const Cluster &); // (asymmetric) difference
+        Cluster &operator+=(const Cluster &); // union
+        Cluster &operator-=(const Cluster &); // (asymmetric) difference
 //
 //        // Friends: IO
-//        friend std::ostream &operator<<(std::ostream &, const Cluster &);
-//        friend std::istream &operator>>(std::istream &, Cluster &);
+        friend std::ostream &operator<<(std::ostream &, const Cluster &);
+        friend std::istream &operator>>(std::istream &, Cluster &);
 //
 //        // Friends: Comparison
         friend bool operator==(const Cluster &, const Cluster &);
-//        friend bool operator!=(const Cluster &, const Cluster &);
+        friend bool operator!=(const Cluster &, const Cluster &);
 //
 //        // Friends: Arithmetic (Cluster and Point)
-//        friend const Cluster operator+(const Cluster &, const Point &);
-//        friend const Cluster operator-(const Cluster &, const Point &);
+        friend const Cluster operator+(const Cluster &, const Point &);
+        friend const Cluster operator-(const Cluster &, const Point &);
 //
 //        // Friends: Arithmetic (two Clusters)
-//        friend const Cluster operator+(const Cluster &, const Cluster &); // union
-//        friend const Cluster operator-(const Cluster &, const Cluster &); // (asymmetric) difference
+        friend const Cluster operator+(const Cluster &, const Cluster &); // union
+        friend const Cluster operator-(const Cluster &, const Cluster &); // (asymmetric) difference
 
     };
 

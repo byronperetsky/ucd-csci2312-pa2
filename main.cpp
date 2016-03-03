@@ -44,16 +44,16 @@ int main() {
 //
 //    // cluster tests
     test_cluster_smoketest(ec);
-//    test_cluster_subscript(ec, NumIters);
-//    test_cluster_equality(ec, NumIters);
-//    test_cluster_order(ec, NumIters);
-//    test_cluster_addremove(ec, NumIters);
-//    test_cluster_contain(ec, NumIters);
-//    test_cluster_copying(ec, NumIters);
-//    test_cluster_assignment(ec, NumIters);
-//    test_cluster_CAO(ec, NumIters);
-//    test_cluster_SAO(ec, NumIters);
-//    test_cluster_IO(ec, NumIters);
+    test_cluster_subscript(ec, NumIters);
+    test_cluster_equality(ec, NumIters);
+    test_cluster_order(ec, NumIters);
+    test_cluster_addremove(ec, NumIters);
+    test_cluster_contain(ec, NumIters);
+    test_cluster_copying(ec, NumIters);
+    test_cluster_assignment(ec, NumIters);
+    test_cluster_CAO(ec, NumIters);
+    test_cluster_SAO(ec, NumIters);
+    test_cluster_IO(ec, NumIters);
 
     return 0;
 }

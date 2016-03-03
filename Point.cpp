@@ -5,7 +5,6 @@
 
 #include <iostream>
 #include <cmath>
-#include <string>
 #include <stdlib.h>
 #include <sstream>
 #include <bits/stl_algo.h>
@@ -32,10 +31,6 @@ namespace Clustering {
 
         }
     }
-
-
-//    Point::Point(int dimensions, double * values){
-
 
 
 //// Big three: cpy ctor, overloaded operator=, dtor
@@ -90,20 +85,17 @@ namespace Clustering {
 
 // Accessors & mutators
 
-    //Returns the values of __id
     int Point::getId() const{
 
         return __id;
     }
 
-    //Returns the value of __dim
     int Point::getDims() const{
 
         return __dim;
 
     }
 
-    //Sets the value of dimension in __value <-- D.A.A.
     void Point::setValue(int dimension, double value){
 
         __values[dimension] = value;
@@ -137,16 +129,11 @@ namespace Clustering {
         return finalDistance;
 
 
-
-
-
-
     }
-//
+
 //// Overloaded operators
-//
 //// Members
-// p *= 6; p.operator*=(6);
+
     Point &Point::operator*=(double aValue ){
 
         for (int index = 0; index < __dim; ++index) {
@@ -172,7 +159,7 @@ namespace Clustering {
 
     }
 
-    // prevent (p1 * 2) = p2;
+
     const Point Point::operator*(double aValue) const{
 
         Point aPoint(*this); //Makes a new point with the dim of the current point
@@ -183,7 +170,7 @@ namespace Clustering {
 
     }
 
-    // p3 = p2 / 2;
+
     const Point Point::operator/(double aValue) const{
 
         Point aPoint(*this);
@@ -195,7 +182,7 @@ namespace Clustering {
 
     double &Point::operator[](int index){
 
-        while(index < 0 || index >= __dim)// <---Bounds checking
+        while(index < 0 || index >= __dim)
             index = 0;
 
         return __values[index];
@@ -327,47 +314,88 @@ namespace Clustering {
 
     bool operator<(const Point & lhsPoint, const Point & rhsPoint){
 
-        bool notEqual = false;
-        bool equal = true;
-
-        int lhsDims = 0, //Holds the total dimensions of lhs Point.
-            rhsDims = 0, //Holds the total dimensions of rhs Point.
-            biggestDims = 0; //Holds the larger of the 2 dimensions between rhs and lhs Points.
-
-        lhsDims = lhsPoint.getDims();
-        rhsDims = rhsPoint.getDims();
-
-        if (rhsDims > lhsDims)
-            biggestDims = rhsDims;
-        else
-            biggestDims = lhsDims;
-
-        for (int index = 0; index < biggestDims ; ++index) {
-
-            if (lhsPoint.getValue(index) != rhsPoint.getValue(index)) {
-
-                return equal;
-
+        for (int index = 0; index < lhsPoint.__dim; ++index)
+        {
+            if (lhsPoint.__values[index] < rhsPoint.__values[index])
+            {
+                return true;
             }
-        }
 
-        return notEqual;
+            else if (lhsPoint.__values[index] > rhsPoint.__values[index])
+            {
+                return false;
+            }
+
+        }
+        return false;
+
+
+//        bool notEqual = false;
+//        bool equal = true;
+//
+//        int lhsDims = 0, //Holds the total dimensions of lhs Point.
+//            rhsDims = 0, //Holds the total dimensions of rhs Point.
+//            biggestDims = 0; //Holds the larger of the 2 dimensions between rhs and lhs Points.
+//
+//        lhsDims = lhsPoint.getDims();
+//        rhsDims = rhsPoint.getDims();
+//
+//        if (rhsDims > lhsDims)
+//            biggestDims = rhsDims;
+//        else
+//            biggestDims = lhsDims;
+//
+//        for (int index = 0; index < biggestDims ; ++index) {
+//
+//            if (lhsPoint.getValue(index) != rhsPoint.getValue(index)) {
+//
+//                return equal;
+//
+//            }
+//        }
+//
+//        return notEqual;
     }
 
     bool operator>(const Point & lhsPoint, const Point & rhsPoint){
 
-        return rhsPoint < lhsPoint;
+        for (int index = 0; index < lhsPoint.__dim; ++index)
+        {
+            if (lhsPoint.__values[index] > rhsPoint.__values[index])
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     bool operator<=(const Point & lhsPoint, const Point &rhsPoint){
 
-        return !(lhsPoint > rhsPoint);
+        if (lhsPoint > rhsPoint)
+        {
+            return false;
+        }
+
+        else
+        {
+            return true;
+        }
+
 
     }
 
     bool operator>=(const Point & lhsPoint, const Point &rhsPoint){
 
-        return !(lhsPoint < rhsPoint);
+        if (lhsPoint < rhsPoint)
+        {
+            return false;
+        }
+
+        else
+        {
+            return true;
+        }
+
     }
 
     std::ostream &operator<<(std::ostream & pointsOut, const Point & aPoint){
@@ -380,8 +408,6 @@ namespace Clustering {
 
         return pointsOut;
     }
-
-
 
     std::istream &operator>>(std::istream & pointsIn, Point &aPoint){
 
@@ -403,9 +429,7 @@ namespace Clustering {
             aPoint.__values = newPoint;
         }
 
-
         return pointsIn;
-
 
 
     }
