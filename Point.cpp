@@ -396,20 +396,6 @@ namespace Clustering {
     }
 
 
-//        int currentDims = aPoint.getDims();
-//
-//        for (int index = 0; index < currentDims ; ++index) {
-//
-//            pointsOut << aPoint.getValue(index);
-//
-//            if ( index != (currentDims - 1)){
-//
-//                pointsOut << ", ";
-//            }
-//        }
-//        pointsOut << '\n';
-
-
 
     std::istream &operator>>(std::istream & pointsIn, Point &aPoint){
 
@@ -434,44 +420,7 @@ namespace Clustering {
 
         return pointsIn;
 
-//        int sizeOfaPoint = aPoint.getDims();
-//        double* aNewPoint = new double[sizeOfaPoint];
-//        char valueOfaPoint[5];
-//
-////        std::string valueString;
-////        std::stringstream streaming;
-////
-////        getline(pointsIn, valueString, ',' );
-////
-////        streaming << valueString;
-//
-//        for (int index = 0; index < (sizeOfaPoint-1) ; ++index) {
-//            aNewPoint[index] = atof(valueOfaPoint);
-//
-//        }
-//
-////        double someVals;
-////        int index = 0;
-////        int themDims = aPoint.getDims();
-////        int sizeSet = std::count(valueString.begin(), valueString.begin(), ',') +1;
-////
-////        if (themDims != sizeSet ){
-////            delete [] aPoint.__values;
-////
-////            aPoint.__dim =  sizeSet;
-////            aPoint.__values = new double [aPoint.__dim];
-////        }
-////
-////        while (!streaming.eof()){
-////
-////            streaming >> someVals;
-////
-////            aPoint.setValue(index, someVals);
-////
-////            ++index;
-////        }
-//
-//        return pointsIn;
+
 
     }
 
