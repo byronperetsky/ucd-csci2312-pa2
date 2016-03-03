@@ -229,111 +229,111 @@ void test_point_copying(ErrorContext &ec, unsigned int numRuns) {
     }
 }
 
-//// operator=
-//void test_point_assignment(ErrorContext &ec, unsigned int numRuns) {
-//    bool pass;
-//
-//    // Run at least once!!
-//    assert(numRuns > 0);
-//
-//    ec.DESC("--- Test - Point - Assign ---");
-//
-//    for (int run = 0; run < numRuns; run++) {
-//
-//        ec.DESC("simple assignment");
-//
-//        {
-//            Point p1(50);
-//
-//            for (int i = 0; i < 50; i++)
-//                p1[i] = 44.56 * i * i + 23.45 * i + 12.34;
-//
-//            Point p2 = p1;
-//
-//            pass = true;
-//            for (int i = 0; i < 50; i++)
-//                pass = pass && (p1[i] == p2[i]);
-//            ec.result(pass);
-//        }
-//
-//        ec.DESC("chained assignment");
-//
-//        {
-//            Point p1(50);
-//
-//            for (int i = 0; i < 50; i++)
-//                p1[i] = 44.56 * i * i + 23.45 * i + 12.34;
-//
-//            Point p2(50), p3(50), p4(50), p5(50);
-//
-//            p2 = p3 = p4 = p5 = p1;
-//
-//            pass = true;
-//            for (int i = 0; i < 50; i++)
-//                pass = pass && (p1[i] == p2[i]);
-//            ec.result(pass);
-//        }
-//    }
-//}
+// operator=
+void test_point_assignment(ErrorContext &ec, unsigned int numRuns) {
+    bool pass;
+
+    // Run at least once!!
+    assert(numRuns > 0);
+
+    ec.DESC("--- Test - Point - Assign ---");
+
+    for (int run = 0; run < numRuns; run++) {
+
+        ec.DESC("simple assignment");
+
+        {
+            Point p1(50);
+
+            for (int i = 0; i < 50; i++)
+                p1[i] = 44.56 * i * i + 23.45 * i + 12.34;
+
+            Point p2 = p1;
+
+            pass = true;
+            for (int i = 0; i < 50; i++)
+                pass = pass && (p1[i] == p2[i]);
+            ec.result(pass);
+        }
+
+        ec.DESC("chained assignment");
+
+        {
+            Point p1(50);
+
+            for (int i = 0; i < 50; i++)
+                p1[i] = 44.56 * i * i + 23.45 * i + 12.34;
+
+            Point p2(50), p3(50), p4(50), p5(50);
+
+            p2 = p3 = p4 = p5 = p1;
+
+            pass = true;
+            for (int i = 0; i < 50; i++)
+                pass = pass && (p1[i] == p2[i]);
+            ec.result(pass);
+        }
+    }
+}
 
 //// operator==, operator!=
-//void test_point_equality(ErrorContext &ec, unsigned int numRuns) {
-//    bool pass;
-//
-//    // Run at least once!!
-//    assert(numRuns > 0);
-//
-//    ec.DESC("--- Test - Point - Equal ---");
-//
-//    for (int run = 0; run < numRuns; run++) {
-//
-//        ec.DESC("compare equal");
-//
-//        {
-//            Point p1(50);
-//
-//            for (int i = 0; i < 50; i++)
-//                p1[i] = 44.56 * i * i + 23.45 * i + 12.34;
-//
-//            Point p2(p1);
-//
-//            pass = (p2 == p1);
-//            ec.result(pass);
-//        }
-//
-//
-//        ec.DESC("ensure operator== is not a dummy");
-//
-//        {
-//            Point p1(50);
-//
-//            for (int i = 0; i < 50; i++)
-//                p1[i] = 44.56 * i * i + 23.45 * i + 12.34;
-//
-//            Point p2(p1);
-//            p2[1] = p2[1] + 1.0;
-//
-//            pass = !(p2 == p1);
-//            ec.result(pass);
-//        }
-//
-//        ec.DESC("compare not equal");
-//
-//        {
-//            Point p1(50);
-//
-//            for (int i = 0; i < 50; i++)
-//                p1[i] = 44.56 * i * i + 23.45 * i + 12.34;
-//
-//            Point p2(p1);
-//            p1[49] = p1[49] + 100.0;
-//
-//            pass = (p2 != p1);
-//            ec.result(pass);
-//        }
-//    }
-//}
-//
+void test_point_equality(ErrorContext &ec, unsigned int numRuns) {
+    bool pass;
+
+    // Run at least once!!
+    assert(numRuns > 0);
+
+    ec.DESC("--- Test - Point - Equal ---");
+
+    for (int run = 0; run < numRuns; run++) {
+
+        ec.DESC("compare equal");
+
+        {
+            Point p1(50);
+
+            for (int i = 0; i < 50; i++)
+                p1[i] = 44.56 * i * i + 23.45 * i + 12.34;
+
+            Point p2(p1);
+
+            pass = (p2 == p1);
+            ec.result(pass);
+        }
+
+
+        ec.DESC("ensure operator== is not a dummy");
+
+        {
+            Point p1(50);
+
+            for (int i = 0; i < 50; i++)
+                p1[i] = 44.56 * i * i + 23.45 * i + 12.34;
+
+            Point p2(p1);
+            p2[1] = p2[1] + 1.0;
+
+            pass = !(p2 == p1);
+            ec.result(pass);
+        }
+
+        ec.DESC("compare not equal");
+
+        {
+            Point p1(50);
+
+            for (int i = 0; i < 50; i++)
+                p1[i] = 44.56 * i * i + 23.45 * i + 12.34;
+
+            Point p2(p1);
+            p1[49] = p1[49] + 100.0;
+
+            pass = (p2 != p1);
+            ec.result(pass);
+        }
+    }
+}
+
 //// operator<, operator<=, operator>, operator>=
 //// (pseudo-lexicographic comparison)
 //void test_point_comparison(ErrorContext &ec, unsigned int numRuns) {
@@ -498,323 +498,323 @@ void test_point_copying(ErrorContext &ec, unsigned int numRuns) {
 //        }
 //    }
 //}
-//
+
 //// operator+=, operator-=, operator*=, operator/=
-//void test_point_CAO(ErrorContext &ec, unsigned int numRuns) {
-//    bool pass;
-//
-//    // Run at least once!!
-//    assert(numRuns > 0);
-//
-//    ec.DESC("--- Test - Point - Compound arithmetic ---");
-//
-//    for (int run = 0; run < numRuns; run++) {
-//
-//        ec.DESC("plus equals (two points)");
-//
-//        {
-//            Point p1(50), p2(50);
-//
-//            for (int i = 0; i < 50; i++) {
-//                p1[i] = i;
-//                p2[i] = i + 1;
-//            }
-//
-//            Point p3(50);
-//            p3 += p1 += p2;
-//            pass = true;
-//            for (int i = 0; i < 50; i++) {
-//                pass = pass && (p3[i] == 2 * i + 1);
-//            }
-//            ec.result(pass);
-//        }
-//
-//        ec.DESC("minus equals (two points)");
-//
-//        {
-//            Point p1(50), p2(50), p3(50);
-//
-//            for (int i = 0; i < 50; i++) {
-//                p1[i] = i;
-//                p2[i] = i + 1;
-//                p3[i] = 3 * i + 1;
-//            }
-//
-//            p3 -= p2 -= p1;
-//            pass = true;
-//            for (int i = 0; i < 50; i++) {
-//                pass = pass && (p3[i] == 3 * i);
-//            }
-//            ec.result(pass);
-//        }
-//
-//        ec.DESC("times equals (point and double)");
-//
-//        {
-//            Point p1(50);
-//
-//            for (int i = 0; i < 50; i++) {
-//                p1[i] = i;
-//            }
-//
-//            p1 *= 3.14;
-//
-//            pass = true;
-//            for (int i = 0; i < 50; i++) {
-//                pass = pass && (p1[i] == 3.14 * i);
-//            }
-//            ec.result(pass);
-//        }
-//
-//        ec.DESC("divide equals (point and double)");
-//
-//        {
-//            Point p1(50);
-//
-//            for (int i = 0; i < 50; i++) {
-//                p1[i] = 100.0 * i;
-//            }
-//
-//            p1 /= 3.14;
-//
-//            pass = true;
-//            for (int i = 0; i < 50; i++) {
-//                pass = pass && (p1[i] == 100.0 * i / 3.14);
-//            }
-//            ec.result(pass);
-//        }
-//    }
-//}
-//
+void test_point_CAO(ErrorContext &ec, unsigned int numRuns) {
+    bool pass;
+
+    // Run at least once!!
+    assert(numRuns > 0);
+
+    ec.DESC("--- Test - Point - Compound arithmetic ---");
+
+    for (int run = 0; run < numRuns; run++) {
+
+        ec.DESC("plus equals (two points)");
+
+        {
+            Point p1(50), p2(50);
+
+            for (int i = 0; i < 50; i++) {
+                p1[i] = i;
+                p2[i] = i + 1;
+            }
+
+            Point p3(50);
+            p3 += p1 += p2;
+            pass = true;
+            for (int i = 0; i < 50; i++) {
+                pass = pass && (p3[i] == 2 * i + 1);
+            }
+            ec.result(pass);
+        }
+
+        ec.DESC("minus equals (two points)");
+
+        {
+            Point p1(50), p2(50), p3(50);
+
+            for (int i = 0; i < 50; i++) {
+                p1[i] = i;
+                p2[i] = i + 1;
+                p3[i] = 3 * i + 1;
+            }
+
+            p3 -= p2 -= p1;
+            pass = true;
+            for (int i = 0; i < 50; i++) {
+                pass = pass && (p3[i] == 3 * i);
+            }
+            ec.result(pass);
+        }
+
+        ec.DESC("times equals (point and double)");
+
+        {
+            Point p1(50);
+
+            for (int i = 0; i < 50; i++) {
+                p1[i] = i;
+            }
+
+            p1 *= 3.14;
+
+            pass = true;
+            for (int i = 0; i < 50; i++) {
+                pass = pass && (p1[i] == 3.14 * i);
+            }
+            ec.result(pass);
+        }
+
+        ec.DESC("divide equals (point and double)");
+
+        {
+            Point p1(50);
+
+            for (int i = 0; i < 50; i++) {
+                p1[i] = 100.0 * i;
+            }
+
+            p1 /= 3.14;
+
+            pass = true;
+            for (int i = 0; i < 50; i++) {
+                pass = pass && (p1[i] == 100.0 * i / 3.14);
+            }
+            ec.result(pass);
+        }
+    }
+}
+
 //// operator+, operator-, operator*, operator/
-//void test_point_SAO(ErrorContext &ec, unsigned int numRuns) {
-//    bool pass;
-//
-//    // Run at least once!!
-//    assert(numRuns > 0);
-//
-//    ec.DESC("--- Test - Point - Simple arithmetic ---");
-//
-//    for (int run = 0; run < numRuns; run++) {
-//
-//        ec.DESC("plus (two points)");
-//
-//        {
-//            Point p1(50), p2(50);
-//
-//            for (int i = 0; i < 50; i++) {
-//                p1[i] = i;
-//                p2[i] = i + 1;
-//            }
-//
-//            Point p3 = p1 + p2;
-//            pass = true;
-//            for (int i = 0; i < 50; i++) {
-//                pass = pass && (p3[i] == 2 * i + 1);
-//            }
-//            ec.result(pass);
-//        }
-//
-//        ec.DESC("minus (two points)");
-//
-//        {
-//            Point p1(50), p2(50);
-//
-//            for (int i = 0; i < 50; i++) {
-//                p1[i] = i + 1;
-//                p2[i] = 2 * i - 1;
-//            }
-//
-//            Point p3 = p2 - p1;
-//            pass = true;
-//            for (int i = 0; i < 50; i++) {
-//                pass = pass && (p3[i] == i - 2);
-//            }
-//            ec.result(pass);
-//        }
-//
-//        ec.DESC("times (point and double)");
-//
-//        {
-//            Point p1(50);
-//
-//            for (int i = 0; i < 50; i++) {
-//                p1[i] = i;
-//            }
-//
-//            Point p2 = p1 * 3.14;
-//
-//            pass = true;
-//            for (int i = 0; i < 50; i++) {
-//                pass = pass && (p2[i] == 3.14 * i);
-//            }
-//            ec.result(pass);
-//        }
-//
-//        ec.DESC("divide (point and double)");
-//
-//        {
-//            Point p1(50);
-//
-//            for (int i = 0; i < 50; i++) {
-//                p1[i] = 100.0 * i;
-//            }
-//
-//            Point p2 = p1 / 3.14;
-//
-//            pass = true;
-//            for (int i = 0; i < 50; i++) {
-//                pass = pass && (p2[i] == 100.0 * i / 3.14);
-//            }
-//            ec.result(pass);
-//        }
-//    }
-//}
-//
+void test_point_SAO(ErrorContext &ec, unsigned int numRuns) {
+    bool pass;
+
+    // Run at least once!!
+    assert(numRuns > 0);
+
+    ec.DESC("--- Test - Point - Simple arithmetic ---");
+
+    for (int run = 0; run < numRuns; run++) {
+
+        ec.DESC("plus (two points)");
+
+        {
+            Point p1(50), p2(50);
+
+            for (int i = 0; i < 50; i++) {
+                p1[i] = i;
+                p2[i] = i + 1;
+            }
+
+            Point p3 = p1 + p2;
+            pass = true;
+            for (int i = 0; i < 50; i++) {
+                pass = pass && (p3[i] == 2 * i + 1);
+            }
+            ec.result(pass);
+        }
+
+        ec.DESC("minus (two points)");
+
+        {
+            Point p1(50), p2(50);
+
+            for (int i = 0; i < 50; i++) {
+                p1[i] = i + 1;
+                p2[i] = 2 * i - 1;
+            }
+
+            Point p3 = p2 - p1;
+            pass = true;
+            for (int i = 0; i < 50; i++) {
+                pass = pass && (p3[i] == i - 2);
+            }
+            ec.result(pass);
+        }
+
+        ec.DESC("times (point and double)");
+
+        {
+            Point p1(50);
+
+            for (int i = 0; i < 50; i++) {
+                p1[i] = i;
+            }
+
+            Point p2 = p1 * 3.14;
+
+            pass = true;
+            for (int i = 0; i < 50; i++) {
+                pass = pass && (p2[i] == 3.14 * i);
+            }
+            ec.result(pass);
+        }
+
+        ec.DESC("divide (point and double)");
+
+        {
+            Point p1(50);
+
+            for (int i = 0; i < 50; i++) {
+                p1[i] = 100.0 * i;
+            }
+
+            Point p2 = p1 / 3.14;
+
+            pass = true;
+            for (int i = 0; i < 50; i++) {
+                pass = pass && (p2[i] == 100.0 * i / 3.14);
+            }
+            ec.result(pass);
+        }
+    }
+}
+
 //// distanceTo
-//void test_point_distance(ErrorContext &ec, unsigned int numRuns) {
-//    bool pass;
-//
-//    // Run at least once!!
-//    assert(numRuns > 0);
-//
-//    ec.DESC("--- Test - Point - Distance ---");
-//
-//    for (int run = 0; run < numRuns; run++) {
-//
-//        ec.DESC("same point");
-//
-//        {
-//            Point p1(50);
-//
-//            for (int i = 0; i < 50; i++)
-//                p1[i] = 2.4 * i * i + 1.3 * i + 6.7;
-//
-//            Point p2(p1);
-//
-//            pass = (p1.distanceTo(p2) == 0);
-//            ec.result(pass);
-//        }
-//
-//        ec.DESC("5 units away");
-//
-//        {
-//            Point p1(50);
-//
-//            for (int i = 0; i < 50; i++)
-//                p1[i] = i;
-//
-//            Point p2(p1);
-//            p2[1] += 5;
-//
-//            pass = (p1.distanceTo(p2) == 5);
-//            if (!pass) std::cout << p1.distanceTo(p2) << " ";
-//            ec.result(pass);
-//        }
-//
-//        // Integer sequence A180442
-//
-//        ec.DESC("distance 1612 from origin");
-//
-//        {
-//            Point p1(169); // 198 - 29
-//
-//            unsigned int start = 30;
-//            for (int i = 0; i < 169; i++) {
-//                p1[i] = start;
-//                start++;
-//            }
-//
-//            Point origin(169); // relies on initialization to zeros
-//
-//            pass = (p1.distanceTo(origin) == 1612);
-//            if (!pass) std::cout << p1.distanceTo(origin) << " ";
-//            ec.result(pass);
-//        }
-//    }
-//}
-//
+void test_point_distance(ErrorContext &ec, unsigned int numRuns) {
+    bool pass;
+
+    // Run at least once!!
+    assert(numRuns > 0);
+
+    ec.DESC("--- Test - Point - Distance ---");
+
+    for (int run = 0; run < numRuns; run++) {
+
+        ec.DESC("same point");
+
+        {
+            Point p1(50);
+
+            for (int i = 0; i < 50; i++)
+                p1[i] = 2.4 * i * i + 1.3 * i + 6.7;
+
+            Point p2(p1);
+
+            pass = (p1.distanceTo(p2) == 0);
+            ec.result(pass);
+        }
+
+        ec.DESC("5 units away");
+
+        {
+            Point p1(50);
+
+            for (int i = 0; i < 50; i++)
+                p1[i] = i;
+
+            Point p2(p1);
+            p2[1] += 5;
+
+            pass = (p1.distanceTo(p2) == 5);
+            if (!pass) std::cout << p1.distanceTo(p2) << " ";
+            ec.result(pass);
+        }
+
+        // Integer sequence A180442
+
+        ec.DESC("distance 1612 from origin");
+
+        {
+            Point p1(169); // 198 - 29
+
+            unsigned int start = 30;
+            for (int i = 0; i < 169; i++) {
+                p1[i] = start;
+                start++;
+            }
+
+            Point origin(169); // relies on initialization to zeros
+
+            pass = (p1.distanceTo(origin) == 1612);
+            if (!pass) std::cout << p1.distanceTo(origin) << " ";
+            ec.result(pass);
+        }
+    }
+}
+
 //// operator>>, operator<< (incl. exceptions)
-//void test_point_IO(ErrorContext &ec, unsigned int numRuns) {
-//    bool pass;
-//
-//    // Run at least once!!
-//    assert(numRuns > 0);
-//
-//    ec.DESC("--- Test - Point - Stream IO ---");
-//
-//    for (int run = 0; run < numRuns; run++) {
-//
-//        ec.DESC("stream between two points");
-//
-//        {
-//            Point p1(50);
-//
-//            for (int i = 0; i < 50; i++)
-//                p1[i] = 6.12 * i * i + 5.17 * i + 4.19;
-//
-//            Point p2(50);
-//            std::stringstream iostr;
-//            iostr << std::setprecision(20) << p1; // Avoid truncation
-//            iostr >> p2;
-//
-//            pass = true;
-//            for (int i = 0; i < 50; i++)
-//                pass = pass && (p2[i] == p1[i]);
-//            if (!pass) {
-//                std::cout << p1 << std::endl;
-//                std::cout << p2 << std::endl;
-//            }
-//            ec.result(pass);
-//
-//        }
-//    }
-//}
-//
-//
-//// - - - - - - - - - - C L U S T E R - - - - - - - - - -
-//
-//// Smoketest: constructor, copy constructor, destructor
-//void test_cluster_smoketest(ErrorContext &ec) {
-//    bool pass;
-//
-//    ec.DESC("--- Test - Cluster - Smoketest ---");
-//
-//    ec.DESC("constructor, destructor");
-//    pass = true;
-//    for (int i = 0; i < 10; i ++) {
-//
-//        Cluster c;
-//    }
-//    ec.result(pass);
-//
-//
-//    ec.DESC("size getter - implement if you haven't");
-//    pass = true;
-//    for (int i = 0; i < 10; i ++) {
-//
-//        // Construct a Point
-//        // At the end of the block, destructor will be called
-//        Cluster c;
-//
-//        pass = (c.getSize() == 0);
-//        if (!pass) break;
-//    }
-//    ec.result(pass);
-//
-//
-//    ec.DESC("copy constructor");
-//    pass = true;
-//    for (int i = 0; i < 10; i ++) {
-//
-//        Cluster c1, c2(c1);
-//
-//        pass = (c1 == c2);
-//        if (!pass) break;
-//    }
-//    ec.result(pass);
-//}
-//
+void test_point_IO(ErrorContext &ec, unsigned int numRuns) {
+    bool pass;
+
+    // Run at least once!!
+    assert(numRuns > 0);
+
+    ec.DESC("--- Test - Point - Stream IO ---");
+
+    for (int run = 0; run < numRuns; run++) {
+
+        ec.DESC("stream between two points");
+
+        {
+            Point p1(50);
+
+            for (int i = 0; i < 50; i++)
+                p1[i] = 6.12 * i * i + 5.17 * i + 4.19;
+
+            Point p2(50);
+            std::stringstream iostr;
+            iostr << std::setprecision(20) << p1; // Avoid truncation
+            iostr >> p2;
+
+            pass = true;
+            for (int i = 0; i < 50; i++)
+                pass = pass && (p2[i] == p1[i]);
+            if (!pass) {
+                std::cout << p1 << std::endl;
+                std::cout << p2 << std::endl;
+            }
+            ec.result(pass);
+
+        }
+    }
+}
+
+
+// - - - - - - - - - - C L U S T E R - - - - - - - - - -
+
+// Smoketest: constructor, copy constructor, destructor
+void test_cluster_smoketest(ErrorContext &ec) {
+    bool pass;
+
+    ec.DESC("--- Test - Cluster - Smoketest ---");
+
+    ec.DESC("constructor, destructor");
+    pass = true;
+    for (int i = 0; i < 10; i ++) {
+
+        Cluster c;
+    }
+    ec.result(pass);
+
+
+    ec.DESC("size getter - implement if you haven't");
+    pass = true;
+    for (int i = 0; i < 10; i ++) {
+
+        // Construct a Point
+        // At the end of the block, destructor will be called
+        Cluster c;
+
+        pass = (c.getSize() == 0);
+        if (!pass) break;
+    }
+    ec.result(pass);
+
+
+    ec.DESC("copy constructor");
+    pass = true;
+    for (int i = 0; i < 10; i ++) {
+
+        Cluster c1, c2(c1);
+
+        pass = (c1 == c2);
+        if (!pass) break;
+    }
+    ec.result(pass);
+}
+
 //// add, remove
 //void test_cluster_addremove(ErrorContext &ec, unsigned int numRuns) {
 //    bool pass;

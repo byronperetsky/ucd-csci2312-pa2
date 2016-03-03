@@ -6,9 +6,10 @@
 #include <iostream>
 #include <cmath>
 #include <string>
+#include <stdlib.h>
 #include <sstream>
+#include <bits/stl_algo.h>
 #include "Point.h"
-
 
 
 namespace Clustering {
@@ -332,15 +333,147 @@ namespace Clustering {
 
         return equal;
     }
-//friend bool operator!=(const Point &, const Point &);
+
+    bool operator!=(const Point & lhsPoint, const Point & rhsPoint){
+
+        return !(lhsPoint == rhsPoint);
+    }
+
+    bool operator<(const Point & lhsPoint, const Point & rhsPoint){
+
+        bool notEqual = false;
+        bool equal = true;
+
+        int lhsDims = 0, //Holds the total dimensions of lhs Point.
+            rhsDims = 0, //Holds the total dimensions of rhs Point.
+            biggestDims = 0; //Holds the larger of the 2 dimensions between rhs and lhs Points.
+
+        lhsDims = lhsPoint.getDims();
+        rhsDims = rhsPoint.getDims();
+
+        if (rhsDims > lhsDims)
+            biggestDims = rhsDims;
+        else
+            biggestDims = lhsDims;
+
+        for (int index = 0; index < biggestDims ; ++index) {
+
+            if (lhsPoint.getValue(index) != rhsPoint.getValue(index)) {
+
+                return equal;
+
+            }
+        }
+
+        return notEqual;
+    }
+
+    bool operator>(const Point & lhsPoint, const Point & rhsPoint){
+
+        return rhsPoint < lhsPoint;
+    }
+
+    bool operator<=(const Point & lhsPoint, const Point &rhsPoint){
+
+        return !(lhsPoint > rhsPoint);
+
+    }
+
+    bool operator>=(const Point & lhsPoint, const Point &rhsPoint){
+
+        return !(lhsPoint < rhsPoint);
+    }
+
+    std::ostream &operator<<(std::ostream & pointsOut, const Point & aPoint){
+
+        pointsOut <<  aPoint.__values[0];
+
+        for (int  index = 1; index < aPoint.__dim ; ++index) {
+            pointsOut << ", " << aPoint.__values[index];
+        }
+
+        return pointsOut;
+    }
+
+
+//        int currentDims = aPoint.getDims();
 //
-//friend bool operator<(const Point &, const Point &);
-//friend bool operator>(const Point &, const Point &);
-//friend bool operator<=(const Point &, const Point &);
-//friend bool operator>=(const Point &, const Point &);
+//        for (int index = 0; index < currentDims ; ++index) {
 //
-//friend std::ostream &operator<<(std::ostream &, const Point &);
-//friend std::istream &operator>>(std::istream &, Point &);
+//            pointsOut << aPoint.getValue(index);
+//
+//            if ( index != (currentDims - 1)){
+//
+//                pointsOut << ", ";
+//            }
+//        }
+//        pointsOut << '\n';
+
+
+
+    std::istream &operator>>(std::istream & pointsIn, Point &aPoint){
+
+        char pointValue[50];
+        double* newPoint = new double[aPoint.__dim];
+
+
+        if (pointsIn.good())
+        {
+            for(int index = 0; index < aPoint.__dim; index++) {
+
+                pointsIn.getline(pointValue, 50, ',');
+                newPoint[index] = atof( pointValue);
+
+            }
+        }
+        else { std::cerr << "The stream is broken" << std::endl;}
+        {
+            aPoint.__values = newPoint;
+        }
+
+
+        return pointsIn;
+
+//        int sizeOfaPoint = aPoint.getDims();
+//        double* aNewPoint = new double[sizeOfaPoint];
+//        char valueOfaPoint[5];
+//
+////        std::string valueString;
+////        std::stringstream streaming;
+////
+////        getline(pointsIn, valueString, ',' );
+////
+////        streaming << valueString;
+//
+//        for (int index = 0; index < (sizeOfaPoint-1) ; ++index) {
+//            aNewPoint[index] = atof(valueOfaPoint);
+//
+//        }
+//
+////        double someVals;
+////        int index = 0;
+////        int themDims = aPoint.getDims();
+////        int sizeSet = std::count(valueString.begin(), valueString.begin(), ',') +1;
+////
+////        if (themDims != sizeSet ){
+////            delete [] aPoint.__values;
+////
+////            aPoint.__dim =  sizeSet;
+////            aPoint.__values = new double [aPoint.__dim];
+////        }
+////
+////        while (!streaming.eof()){
+////
+////            streaming >> someVals;
+////
+////            aPoint.setValue(index, someVals);
+////
+////            ++index;
+////        }
+//
+//        return pointsIn;
+
+    }
 
 
 }
