@@ -14,7 +14,7 @@ namespace Clustering {
 
     public:
         Point(int);
-        Point(int, double *);
+//        Point(int, double *);
 
         // Big three: cpy ctor, overloaded operator=, dtor
         Point(const Point &);

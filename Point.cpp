@@ -33,24 +33,10 @@ namespace Clustering {
         }
     }
 
-    //FOR PERSONAL TESTING AND DEBUGGING!!!!
-    Point::Point(int dimensions, double * values){
 
-        //Generates a unique id for each point as they are made and increments idGen for the next point.
-        __id = __idGen;
-        ++__idGen;
+//    Point::Point(int dimensions, double * values){
 
-        __dim = dimensions; //Assings the number of dimensions of the point.
 
-        __values = new double[__dim]; //Creates a dynamically allocated array of doubles that holds each dimension
-
-        //Initializes the array __values to the values of the array values.
-        for(int index = 0 ; index < __dim ; index++ ){
-
-            __values[index] = values[index];
-
-        }
-    }
 
 //// Big three: cpy ctor, overloaded operator=, dtor
 

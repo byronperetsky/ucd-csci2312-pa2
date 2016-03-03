@@ -107,15 +107,15 @@ namespace Clustering {
     }
 //
 //        // Set functions: They allow calling c1.add(c2.remove(p));
-        void Cluster::add(const Point & aPoint){
+        void Cluster::add(const Point & aAddedPoint){
 
-            LNodePtr aNode = new LNode(aPoint, nullptr);
+            LNodePtr aNode = new LNode(aAddedPoint, nullptr);
 
             if(__points == nullptr)
             {
                 __points = aNode;
             }
-            else if(aPoint < __points->point)
+            else if(aAddedPoint < __points->point)
             {
                 aNode->next = __points;
                 __points = aNode;
@@ -129,7 +129,7 @@ namespace Clustering {
 
                 while (check){
 
-                    if (currentN == nullptr || currentN->point > aPoint )
+                    if (currentN == nullptr || currentN->point > aAddedPoint )
                     {
                         aNode->next = currentN;
                         prevN->next = aNode;
@@ -153,21 +153,95 @@ namespace Clustering {
 
 
     }
-        const Point &remove(const Point & aPoint){
 
-            return true;
+        const Point &Cluster::remove(const Point & aRemovedPoint){
+
+            LNodePtr  currentN;
+            LNodePtr  prevN;
+
+            if ( __points->point == aRemovedPoint )//If head of list.
+            {
+                currentN = __points->next;
+
+                delete  __points;
+
+                __points = currentN;
+            }
+            else
+            {
+                currentN = __points;
+                while(currentN != nullptr && currentN->point != aRemovedPoint){
+
+                    prevN = currentN;
+                    currentN = currentN->next;
+
+                }
+                if (currentN)
+                {
+
+
+                    prevN->next = currentN->next;
+
+                    delete currentN;
+                }
+            }
+            --__size;
+            return aRemovedPoint;
+        }
+
+        bool Cluster::contains(const Point & aPoint){
+
+            LNodePtr currentN = __points;
+
+            bool containts = false;
+
+            for (; currentN != nullptr ; currentN = currentN->next) {
+
+                if(currentN->point == aPoint)
+                {
+                    containts = true;
+                    break;
+                }
+            }
+
+            return containts;
 
         }
-//        bool contains(const Point &);
 //
 //        // Overloaded operators
 //
 //        // Members: Subscript
-//        const Point &operator[](unsigned int index) const; // notice: const
+        //  notice: const
+        const Point &Cluster::operator[](unsigned int index) const{
+
+            if (index < __size)
+            {
+                LNodePtr currentN = __points;
+
+                for (int counter = 0; counter < index ; ++counter) {
+                    currentN = currentN->next;
+                }
+                return currentN->point;
+            }
+         }
 //
 //        // Members: Compound assignment (Point argument)
-//        Cluster &operator+=(const Point &);
-//        Cluster &operator-=(const Point &);
+        Cluster &Cluster::operator+=(const Point & aPoint){
+
+            add(aPoint);
+
+            return *this;
+
+
+        }
+
+        Cluster &Cluster::operator-=(const Point & aPoint){
+
+            remove(aPoint);
+
+            return *this;
+
+        }
 //
 //        // Members: Compound assignment (Cluster argument)
 //        Cluster &operator+=(const Cluster &); // union

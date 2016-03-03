@@ -7,6 +7,7 @@
 #include <cassert>
 #include <iomanip>
 #include <fstream>
+#include <limits>
 
 #include "ClusteringTests.h"
 #include "Point.h"
@@ -334,170 +335,170 @@ void test_point_equality(ErrorContext &ec, unsigned int numRuns) {
     }
 }
 
-//// operator<, operator<=, operator>, operator>=
-//// (pseudo-lexicographic comparison)
-//void test_point_comparison(ErrorContext &ec, unsigned int numRuns) {
-//    bool pass;
-//
-//    // Run at least once!!
-//    assert(numRuns > 0);
-//
-//    ec.DESC("--- Test - Point - Compare ---");
-//
-//    for (int run = 0; run < numRuns; run++) {
-//
-//        ec.DESC("compare pseudo-lexicographic order");
-//
-//        {
-//            Point p1(50), p2(50), p3(50);
-//
-//            for (int i = 0; i < 50; i ++) {
-//                p1[i] = i;
-//                p2[i] = i + 1.0;
-//                p3[i] = i + 2.0;
-//            }
-//
-//            pass = (p1 < p2) &&
-//                   (p2 < p3) &&
-//                   (p1 < p3);
-//            ec.result(pass);
-//        }
-//
-//        ec.DESC("less than, one different value, leading");
-//
-//        {
-//            Point p1(50), p2(50), p3(50);
-//
-//            for (int i = 0; i < 50; i ++) {
-//                p1[i] = p2[i] = p3[i] = i;
-//            }
-//            p2[1] = p1[1] + std::numeric_limits<double>::epsilon();
-//            p3[1] = p2[1] + std::numeric_limits<double>::epsilon();
-//
-//            pass = (p1 < p2) &&
-//                   (p2 < p3) &&
-//                   (p1 < p3);
-//            ec.result(pass);
-//        }
-//
-//        ec.DESC("less than, one different value, middle");
-//
-//        {
-//            Point p1(50), p2(50), p3(50);
-//
-//            for (int i = 0; i < 50; i ++) {
-//                p1[i] = p2[i] = p3[i] = i;
-//            }
-//            p2[30] = p1[30] + 0.00000001;
-//            p3[30] = p2[30] + 0.00000001;
-//
-//            pass = (p1 < p2) &&
-//                   (p2 < p3) &&
-//                   (p1 < p3);
-//            ec.result(pass);
-//        }
-//
-//        ec.DESC("less than, one different value, trailing");
-//
-//        {
-//            Point p1(50), p2(50), p3(50);
-//
-//            for (int i = 0; i < 50; i ++) {
-//                p1[i] = p2[i] = p3[i] = i;
-//            }
-//            p2[49] = p1[49] + 0.00000001;
-//            p3[49] = p2[49] + 0.00000001;
-//
-//            pass = (p1 < p2) &&
-//                   (p2 < p3) &&
-//                   (p1 < p3);
-//            ec.result(pass);
-//        }
-//
-//        ec.DESC("less than or equal, equal values");
-//
-//        {
-//            Point p1(50), p2(50), p3(50);
-//
-//            for (int i = 0; i < 50; i ++) {
-//                p1[i] = p2[i] = p3[i] = i;
-//            }
-//
-//            pass = (p1 <= p2) &&
-//                   (p2 <= p3) &&
-//                   (p1 <= p3);
-//            ec.result(pass);
-//        }
-//
-//        ec.DESC("less than or equal, one different value, trailing");
-//
-//        {
-//            Point p1(50), p2(50), p3(50);
-//
-//            for (int i = 0; i < 50; i ++) {
-//                p1[i] = p2[i] = p3[i] = i;
-//            }
-//            p2[49] = p1[49] + 0.00000001;
-//            p3[49] = p2[49] + 0.00000001;
-//
-//            pass = (p1 <= p2) &&
-//                   (p2 <= p3) &&
-//                   (p1 <= p3);
-//            ec.result(pass);
-//        }
-//
-//        ec.DESC("more than or equal, equal values");
-//
-//        {
-//            Point p1(50), p2(50), p3(50);
-//
-//            for (int i = 0; i < 50; i ++) {
-//                p1[i] = p2[i] = p3[i] = i;
-//            }
-//
-//            pass = (p1 >= p2) &&
-//                   (p2 >= p3) &&
-//                   (p1 >= p3);
-//            ec.result(pass);
-//        }
-//
-//        ec.DESC("more than or equal, one different value, middle");
-//
-//        {
-//            Point p1(50), p2(50), p3(50);
-//
-//            for (int i = 0; i < 50; i ++) {
-//                p1[i] = p2[i] = p3[i] = i;
-//            }
-//
-//            p2[30] = p3[30] + 0.00000001;
-//            p1[30] = p2[30] + 0.00000001;
-//
-//            pass = (p1 >= p2) &&
-//                   (p2 >= p3) &&
-//                   (p1 >= p3);
-//            ec.result(pass);
-//        }
-//
-//        ec.DESC("more than, one different value, middle");
-//
-//        {
-//            Point p1(50), p2(50), p3(50);
-//
-//            for (int i = 0; i < 50; i ++) {
-//                p1[i] = p2[i] = p3[i] = i;
-//            }
-//
-//            p2[30] = p3[30] + 0.00000001;
-//            p1[30] = p2[30] + 0.00000001;
-//
-//            pass = (p1 > p2) &&
-//                   (p2 > p3) &&
-//                   (p1 > p3);
-//            ec.result(pass);
-//        }
-//    }
-//}
+// operator<, operator<=, operator>, operator>=
+// (pseudo-lexicographic comparison)
+void test_point_comparison(ErrorContext &ec, unsigned int numRuns) {
+    bool pass;
+
+    // Run at least once!!
+    assert(numRuns > 0);
+
+    ec.DESC("--- Test - Point - Compare ---");
+
+    for (int run = 0; run < numRuns; run++) {
+
+        ec.DESC("compare pseudo-lexicographic order");
+
+        {
+            Point p1(50), p2(50), p3(50);
+
+            for (int i = 0; i < 50; i ++) {
+                p1[i] = i;
+                p2[i] = i + 1.0;
+                p3[i] = i + 2.0;
+            }
+
+            pass = (p1 < p2) &&
+                   (p2 < p3) &&
+                   (p1 < p3);
+            ec.result(pass);
+        }
+
+        ec.DESC("less than, one different value, leading");
+
+        {
+            Point p1(50), p2(50), p3(50);
+
+            for (int i = 0; i < 50; i ++) {
+                p1[i] = p2[i] = p3[i] = i;
+            }
+            p2[1] = p1[1] + std::numeric_limits<double>::epsilon();
+            p3[1] = p2[1] + std::numeric_limits<double>::epsilon();
+
+            pass = (p1 < p2) &&
+                   (p2 < p3) &&
+                   (p1 < p3);
+            ec.result(pass);
+        }
+
+        ec.DESC("less than, one different value, middle");
+
+        {
+            Point p1(50), p2(50), p3(50);
+
+            for (int i = 0; i < 50; i ++) {
+                p1[i] = p2[i] = p3[i] = i;
+            }
+            p2[30] = p1[30] + 0.00000001;
+            p3[30] = p2[30] + 0.00000001;
+
+            pass = (p1 < p2) &&
+                   (p2 < p3) &&
+                   (p1 < p3);
+            ec.result(pass);
+        }
+
+        ec.DESC("less than, one different value, trailing");
+
+        {
+            Point p1(50), p2(50), p3(50);
+
+            for (int i = 0; i < 50; i ++) {
+                p1[i] = p2[i] = p3[i] = i;
+            }
+            p2[49] = p1[49] + 0.00000001;
+            p3[49] = p2[49] + 0.00000001;
+
+            pass = (p1 < p2) &&
+                   (p2 < p3) &&
+                   (p1 < p3);
+            ec.result(pass);
+        }
+
+        ec.DESC("less than or equal, equal values");
+
+        {
+            Point p1(50), p2(50), p3(50);
+
+            for (int i = 0; i < 50; i ++) {
+                p1[i] = p2[i] = p3[i] = i;
+            }
+
+            pass = (p1 <= p2) &&
+                   (p2 <= p3) &&
+                   (p1 <= p3);
+            ec.result(pass);
+        }
+
+        ec.DESC("less than or equal, one different value, trailing");
+
+        {
+            Point p1(50), p2(50), p3(50);
+
+            for (int i = 0; i < 50; i ++) {
+                p1[i] = p2[i] = p3[i] = i;
+            }
+            p2[49] = p1[49] + 0.00000001;
+            p3[49] = p2[49] + 0.00000001;
+
+            pass = (p1 <= p2) &&
+                   (p2 <= p3) &&
+                   (p1 <= p3);
+            ec.result(pass);
+        }
+
+        ec.DESC("more than or equal, equal values");
+
+        {
+            Point p1(50), p2(50), p3(50);
+
+            for (int i = 0; i < 50; i ++) {
+                p1[i] = p2[i] = p3[i] = i;
+            }
+
+            pass = (p1 >= p2) &&
+                   (p2 >= p3) &&
+                   (p1 >= p3);
+            ec.result(pass);
+        }
+
+        ec.DESC("more than or equal, one different value, middle");
+
+        {
+            Point p1(50), p2(50), p3(50);
+
+            for (int i = 0; i < 50; i ++) {
+                p1[i] = p2[i] = p3[i] = i;
+            }
+
+            p2[30] = p3[30] + 0.00000001;
+            p1[30] = p2[30] + 0.00000001;
+
+            pass = (p1 >= p2) &&
+                   (p2 >= p3) &&
+                   (p1 >= p3);
+            ec.result(pass);
+        }
+
+        ec.DESC("more than, one different value, middle");
+
+        {
+            Point p1(50), p2(50), p3(50);
+
+            for (int i = 0; i < 50; i ++) {
+                p1[i] = p2[i] = p3[i] = i;
+            }
+
+            p2[30] = p3[30] + 0.00000001;
+            p1[30] = p2[30] + 0.00000001;
+
+            pass = (p1 > p2) &&
+                   (p2 > p3) &&
+                   (p1 > p3);
+            ec.result(pass);
+        }
+    }
+}
 
 //// operator+=, operator-=, operator*=, operator/=
 void test_point_CAO(ErrorContext &ec, unsigned int numRuns) {
@@ -815,7 +816,7 @@ void test_cluster_smoketest(ErrorContext &ec) {
     ec.result(pass);
 }
 
-//// add, remove
+// add, remove
 //void test_cluster_addremove(ErrorContext &ec, unsigned int numRuns) {
 //    bool pass;
 //
@@ -897,7 +898,7 @@ void test_cluster_smoketest(ErrorContext &ec) {
 //        }
 //    }
 //}
-//
+
 //// Containment
 //void test_cluster_contain(ErrorContext &ec, unsigned int numRuns) {
 //    bool pass;
